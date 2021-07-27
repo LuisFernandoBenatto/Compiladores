@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lo8l3gIS8AI9cGh7eEmAR1udiQJUk0hawslRgKD5PYAmaIn4segYUZ/eUBCaHNAMfD0L0dvhndzIfkp6LuXbTg==",
+  "dgSpecHash": "n4OD2Ab6s9jjpdmq/uD6bAjmHd0KP1mVwvJqRAPnuIoDkhSv4Nz4coQ2c8vrCgrVpxWTqpVs2ZoELuzmmZFn+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Computer\\Documents\\LuisFernandoMB-UENP2020\\Repository\\Compiladores\\SimpleInterpreter\\SimpleInterpreter.csproj",
+  "projectFilePath": "C:\\Users\\Computer\\Documents\\LuisFernandoMB-UENP\\Repository\\Compiladores\\SimpleInterpreter\\SimpleInterpreter.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Computer\\Documents\\LuisFernandoMB-UENP2020\\Repository\\Compiladores\\SimpleInterpreter\\SimpleInterpreter.csproj",
+      "projectUniqueName": "C:\\Users\\Computer\\Documents\\LuisFernandoMB-UENP\\Repository\\Compiladores\\SimpleInterpreter\\SimpleInterpreter.csproj",
       "projectName": "SimpleInterpreter",
-      "projectPath": "C:\\Users\\Computer\\Documents\\LuisFernandoMB-UENP2020\\Repository\\Compiladores\\SimpleInterpreter\\SimpleInterpreter.csproj",
+      "projectPath": "C:\\Users\\Computer\\Documents\\LuisFernandoMB-UENP\\Repository\\Compiladores\\SimpleInterpreter\\SimpleInterpreter.csproj",
       "packagesPath": "C:\\Users\\Computer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Computer\\Documents\\LuisFernandoMB-UENP2020\\Repository\\Compiladores\\SimpleInterpreter\\obj\\",
+      "outputPath": "C:\\Users\\Computer\\Documents\\LuisFernandoMB-UENP\\Repository\\Compiladores\\SimpleInterpreter\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Computer\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
