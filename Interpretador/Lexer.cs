@@ -16,7 +16,7 @@ namespace Interpretador
     public Lexer(string input)
     {
       this.Input = input;
-      Position = 0;
+      this.Position = 0;
     }
     private char NextChar()
     {
@@ -44,9 +44,44 @@ namespace Interpretador
         } while (char.IsDigit(peek));
         if (peek != char.MinValue) 
         {
-          Position--;
+          this.Position--;
         }
         return new Token(ETokenType.NUM, int.Parse(v));
+      }
+      if (peek == '$') 
+      {
+        var v = "";
+        do 
+        {
+          v += peek;
+          peek = NextChar();
+        } while (char.IsDigit(peek));
+        if (peek != char.MinValue) 
+        {
+          this.Position--;
+        }
+          return new Token(ETokenType.VAR, int.Parse(v));
+      }
+      if (peek == 'p') 
+      {
+        var v = "";
+        do 
+        {
+          v += peek;
+          peek = NextChar();
+        } while (char.IsDigit(peek));
+        if (peek != char.MinValue) 
+        {
+          this.Position--;
+        }
+        if(v.Contains("print"))
+        {
+          return new Token(ETokenType.PRINT);
+        }
+        else
+        {
+          return new Token(ETokenType.INVALID);
+        }
       }
       if (peek == '+')
       {
@@ -60,8 +95,34 @@ namespace Interpretador
       {
         return new Token(ETokenType.EOF);
       }
-
-      return new Token(ETokenType.INVALID);
+      else if (peek == '/')
+      {
+        return new Token(ETokenType.DIV);
+      }
+      else if (peek == '*')
+      {
+        return new Token(ETokenType.MULT);
+      }
+      else if (peek == ';')
+      {
+        return new Token(ETokenType.EOL);
+      }
+      else if (peek == '(')
+      {
+        return new Token(ETokenType.OPEN);
+      }
+      else if (peek == ')')
+      {
+        return new Token(ETokenType.CLOSE);
+      }
+      else if (peek == '=')
+      {
+        return new Token(ETokenType.ATTR);
+      }
+      else 
+      {
+        return new Token(ETokenType.INVALID);
+      }
     }
   }  
   public class Token
@@ -78,6 +139,11 @@ namespace Interpretador
     {
       this.Type = type;
       this.Attribute = value;
+    }
+    public Token(ETokenType type)
+    {
+      this.Type = type;
+      this.Attribute = null;
     }
   }
   public enum ETokenType

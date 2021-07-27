@@ -1,14 +1,14 @@
+using System.Collections.Generic;
 namespace Interpretador
 {
   public class SymbolTable
   {
-    var symbol_table;
-
-    public void set(var key, var value) {
-      symbol_table[key] = value;
+    Dictionary<int, double> symbolTable = new Dictionary<int, double>(){};
+    public double get(int key) {
+      return symbolTable[key];
     }
-    public string get(var key) {
-      return symbol_table[key];
+    public void set(int key, double value) {
+      symbolTable[key] = value;
     }
   }
 }
