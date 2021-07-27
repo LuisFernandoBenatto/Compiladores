@@ -20,11 +20,11 @@ namespace Interpretador
     }
     private char NextChar()
     {
-      if (Position == Input.Length) 
+      if (this.Position == this.Input.Length) 
       {
         return char.MinValue;
       }
-      return Input[Position++];
+      return this.Input[this.Position++];
     }
     public Token NextToken()
     {
@@ -63,22 +63,21 @@ namespace Interpretador
 
       return new Token(ETokenType.INVALID);
     }
-    
-    public class Token
-    {
-      public ETokenType Type {get;set;}
-      public int? Attribute {get;set;}
-      public bool HasValue 
-      { get
-        {
-          return Attribute.HasValue;
-        }
-      }
-      public Token(ETokenType type, int? value = null)
+  }  
+  public class Token
+  {
+    public ETokenType Type {get;set;}
+    public int? Attribute {get;set;}
+    public bool HasValue 
+    { get
       {
-        Type = type;
-        Attribute = value;
+        return this.Attribute.HasValue;
       }
+    }
+    public Token(ETokenType type, int? value = null)
+    {
+      this.Type = type;
+      this.Attribute = value;
     }
   }
   public enum ETokenType
@@ -91,10 +90,11 @@ namespace Interpretador
     OPEN = 5,
     CLOSE = 6,
     VAR = 7,
-    PRINT = 8,
-    EQ = 9,
-    INVALID = 99,
-    EOL = 300,
-    EOF = -1,
+    ATTR = 8,
+    PRINT = 9,
+    EQ = 10,
+    EOL = 98,
+    EOF = 99,
+    INVALID = -1,
   }
 }

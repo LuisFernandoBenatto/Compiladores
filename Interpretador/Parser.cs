@@ -6,114 +6,117 @@ namespace Interpretador
   {
     public string Output { get; private set; }
     private Lexer _lexer;
-    private Token lookahead;
+    private SymbolTable symbol_table;
+    public Token lookahead;
     public Parser(Lexer lexer)
     {
-      _lexer = lexer;
-      lookahead = _lexer.NextToken();
+      this._lexer = lexer;
+      lookahead = this._lexer.NextToken();
     }
     public void Match(Token token)
     {
-      if (lookahead.Type == token.Type && lookahead.Value == token.Value)
+      if (this.lookahead.Type == token.Type && this.lookahead.Attribute == token.Attribute)
       {
-        lookahead = lexer.NextToken();
+        this.lookahead = this._lexer.NextToken();
       } 
       else 
       {
          throw new System.Exception("\n*** Syntax Error! Values do not match. *** \n");
       }
     }
-    public Term()
+    public double Term()
     { //term ::= OPEN expr CLOSE | NUM | VAR
-      if (lookahead == OPEN) 
+      if (this.lookahead.Type == ETokenType.OPEN) 
       {
-        return Expr();
+        this.Match(Lexer.Token(ETokenType.OPEN));
+        var _expr = this.Expr();
+        this.Match(Lexer.Token(ETokenType.CLOSE));
+        return _expr;
       }
-      if (lookahead == NUMBER)
+      else if (this.lookahead.Type == ETokenType.NUM)
       {
-        double v = lookahead.value;
-        Match(NUM);
-        return v;
+        var _value = this.lookahead.Attribute;
+        this.Match(Lexer.Token(ETokenType.NUM, _value));
+        return _value;
       }
-      if (lookahead == VAR)
+      else if (this.lookahead.Type == ETokenType.VAR)
       {
-        int referece = lookahead.value;
-        Match(VAR);
-        return getValue(symbol_table, referece);
+        var _key = lookahead.Attribute;
+        this.Match(Lexer.Token(ETokenType.VAR, _key));
+        return symbol_table.get(_key);
       }
-        throw new System.Exception("\n*** Syntax Error! '" + lookahead.value + "' it's not a number. ***\n");
+      else 
+      {
+        throw new System.Exception("\n*** Syntax Error! '" + this.lookahead.Attribute + "' it's not a number. ***\n");
+      }
     }
     public double Fact() 
     {// fact ::= term MULT fact | term DIV fact | term
-      double term = Term();    
-      if (lookahead == MULT) {
-        Match(MULT);
-        double fact1 = Fact();
-        return term * fact1;
-      } else if (lookahead == DIV) {
-        Match(DIV);
-        double fact1 = Fact();
-        return term / fact1;
+      double _term = this.Term();    
+      if (this.lookahead.Type == ETokenType.MULT) {
+        this.Match(this.lookahead.Token(ETokenType.MULT));
+        double _fact1 = Fact();
+        return _term * _fact1;
+      } else if (this.lookahead.Type == ETokenType.DIV) {
+        this.Match(this.lookahead.Token(ETokenType.DIV));
+        double _fact1 = Fact();
+        return _term / _fact1;
       } else {
-        return term;
+        return _term;
       }
     } 
     public double Expr() 
     {//expr ::= fact SUM expr | fact SUB expr | fact 
-      double fact = Fact();    
-      if (lookahead == SUM) {
-        Match(SUM);
-        double expr1 = Expr();
-        return fact + expr1;
-      } else if (lookahead == SUB) {
-          Match(SUB);
-          double expr1 = Expr();
-          return fact - expr1;
+      double _fact = this.Fact();    
+      if (this.lookahead.Type == ETokenType.SUM) {
+        this.Match(this.lookahead.Token(ETokenType.SUM));
+        double _expr1 = this.Expr();
+        return _fact + _expr1;
+      } else if (this.lookahead.Type == ETokenType.SUB) {
+          this.Match(this.lookahead.Token(ETokenType.SUB));
+          double _expr1 = this.Expr();
+          return _fact - _expr1;
       } else {
-        return fact;
+        return _fact;
       }
     }
     public void Print() 
     {// imp  ::= PRINT OPEN VAR CLOSE
-      Match(PRINT);
-      Match(OPEN);
-      int reference = lookahead.value;
-      Match(VAR);
-      Match(CLOSE);
-      double value = getValue(symbol_table, reference);
-      Console.WriteLine("%d\n", value);;
+      this.Match(this.lookahead.Token(ETokenType.PRINT, 'print'));
+      this.Match(this.lookahead.Token(ETokenType.OPEN));
+      var _key = this.lookahead.Attribute;
+      this.Match(this.lookahead.Token(ETokenType.VAR));
+      this.Match(this.lookahead.Token(ETokenType.CLOSE));
+      double _value = getValue(symbol_table, _key);
+      Console.WriteLine(_value);
     }
-    public void Atr() 
+    public void Attr() 
     { // atr  ::= VAR EQ expr
-      int reference = lookahead.value;
-      Match(VAR);
-      Match(EQ);
-      double expr = Expr();
-      setValue(symbol_table, reference, expr);
+      var _value = this.lookahead.Attribute;
+      this.Match(this.lookahead.Token(ETokenType.VAR));
+      this.Match(this.lookahead.Token(ETokenType.EQ));
+      double _expr = this.Expr();
+      setValue(symbol_table, value, _expr);
     }
     public void Stmt()
     { //  stmt ::= atr | imp
-      if (lookahead == VAR)
-        Atr();
-      else if (lookahead == PRINT)
-        Imp();
+      if (this.lookahead.Type == ETokenType.VAR)
+        this.Attr();
+      else if (this.lookahead.Type == ETokenType.PRINT)
+        this.Print();
       else 
         throw new System.Exception("\n*** esperava VAR ou PRINT *** \n");
     }
     public void Lines() 
     { //lines::= prog | ε
-      if (lookahead != EOF)
-        Prog();
+      if (this.lookahead.Type != ETokenType.EOF)
+        this.Prog();
     }
     public void Prog() 
     {  //prog ::= stmt EOL lines
-        Stmt();
-        Match(EOL);
-        Lines();
+        this.Stmt();
+        this.Match(lookahead.Token(ETokenType.EOL));
+        this.Lines();
     }
-  }
-  public enum ETokenType
-  {
-    NUMBER, VAR, SUM, SUB, MULT, DIV, OPEN, CLOSE, PRINT, EQ, EOF, INVALID, EOL
   }
 }
