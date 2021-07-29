@@ -42,6 +42,7 @@ namespace Interpretador
           v += peek;
           peek = NextChar();         
         } while (char.IsDigit(peek));
+        Console.WriteLine("** Esse é o v: " + v + " **");
         if (peek != char.MinValue) 
         {
           this.Position--;
@@ -55,7 +56,8 @@ namespace Interpretador
         {
           v += peek;
           peek = NextChar();
-        } while (char.IsDigit(peek));
+        } while (char.IsLetter(peek));
+        Console.WriteLine("** Esse é o v '$': " + v + " **");
         if (peek != char.MinValue) 
         {
           this.Position--;
@@ -69,7 +71,8 @@ namespace Interpretador
         {
           v += peek;
           peek = NextChar();
-        } while (char.IsDigit(peek));
+        } while (char.IsLetter(peek));
+        Console.WriteLine("** Esse é o v 'print': " + v + " **");
         if (peek != char.MinValue) 
         {
           this.Position--;
@@ -83,17 +86,18 @@ namespace Interpretador
           return new Token(ETokenType.INVALID);
         }
       }
-      if (peek == '+')
+      Console.WriteLine("** Esse é o peek: " + peek + " **");
+      if (peek == char.MinValue)
+      {
+        return new Token(ETokenType.EOF);
+      }
+      else if (peek == '+')
       {
         return new Token(ETokenType.SUM);
       }
       else if (peek == '-')
       {
         return new Token(ETokenType.SUB);
-      }
-      else if (peek == char.MinValue)
-      {
-        return new Token(ETokenType.EOF);
       }
       else if (peek == '/')
       {
@@ -128,12 +132,12 @@ namespace Interpretador
   public class Token
   {
     public ETokenType Type {get;set;}
-    public double Attribute {get;set;}
+    public double? Attribute {get;set;}
     public String Name {get;set;}
     public bool HasValue 
     { get
       {
-        if(this.Attribute == 0) 
+        if(this.Attribute == null) 
         {
           return false;
         } 
@@ -143,13 +147,13 @@ namespace Interpretador
         }
       }
     }
-    public Token(ETokenType type, double value, string name)
+    public Token(ETokenType type, double? value, string name)
     {
       this.Type = type;
       this.Attribute = value;
       this.Name = name;
     }
-    public Token(ETokenType type, double value)
+    public Token(ETokenType type, double? value)
     {
       this.Type = type;
       this.Attribute = value;
@@ -158,13 +162,13 @@ namespace Interpretador
     public Token(ETokenType type, string name)
     {
       this.Type = type;
-      this.Attribute = 0;
+      this.Attribute = null;
       this.Name = name;
     }
     public Token(ETokenType type)
     {
       this.Type = type;
-      this.Attribute = 0;
+      this.Attribute = null;
       this.Name = "";
     }
   }

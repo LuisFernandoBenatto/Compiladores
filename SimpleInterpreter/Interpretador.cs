@@ -5,30 +5,12 @@ namespace Interpretador
     {
         static void Main(string[] args)
         {
-
-            var strProgram = "$x = 2 + 2;" + '\n' +
-                             "print($z);";
-
-            var lexer = new Lexer(strProgram);
-            var parser = new Parser(lexer);
-            // try 
-            // {
-                var res = parser.Expr();
-                // Console.WriteLine(parser.Output);
-                Console.WriteLine(res);
-            // } 
-            // catch (Exception e) 
-            // {
-            //      Console.WriteLine("Error: "+ e.Message);
-            // }
-        }
-        private static void TestLexer(Lexer lexer)
-        {
-            while (lexer.HasInput)
-            {
-                var token = lexer.NextToken();
-                Console.WriteLine("<"+token.Type+ (token.HasValue?","+token.Attribute:"")+">");
-            }
+            Lexer lexer = new Lexer("$x = 2 + 2 * 3; "
+                                  + "$y = 1 + 10 / 2; "
+                                  + "$z = $x + $y; "
+                                  + "print($z);");
+            Parser parser = new Parser(lexer);
+            parser.Prog();
         }
     }
 }
