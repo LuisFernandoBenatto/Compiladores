@@ -1,0 +1,16 @@
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\bin\Debug\net5.0\AnalisadorSintatico.exe
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\bin\Debug\net5.0\AnalisadorSintatico.deps.json
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\bin\Debug\net5.0\AnalisadorSintatico.runtimeconfig.json
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\bin\Debug\net5.0\AnalisadorSintatico.runtimeconfig.dev.json
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\bin\Debug\net5.0\AnalisadorSintatico.dll
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\bin\Debug\net5.0\ref\AnalisadorSintatico.dll
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\bin\Debug\net5.0\AnalisadorSintatico.pdb
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\AnalisadorSintatico.csproj.AssemblyReference.cache
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\AnalisadorSintatico.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\AnalisadorSintatico.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\AnalisadorSintatico.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\AnalisadorSintatico.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\AnalisadorSintatico.dll
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\ref\AnalisadorSintatico.dll
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\AnalisadorSintatico.pdb
+C:\Users\User\Documents\GitHub\Compiladores\AnalisadorSintatico\obj\Debug\net5.0\AnalisadorSintatico.genruntimeconfig.cache
