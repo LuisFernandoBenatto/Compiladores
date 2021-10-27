@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "configurations": [{
+        "name": "antlr4-SimpleDecisionGrammar",
+        "type": "antlr-debug",
+        "request": "launch",
+        "input": "SimpleDecisionGrammar/input.txt",
+        "grammar": "SimpleDecisionGrammar/SimpleDecisionGrammar.g4",
+        "startRule": "expr_if",
+        "printParseTree": true,
+        "visualParseTree": true
+    }]
+}
